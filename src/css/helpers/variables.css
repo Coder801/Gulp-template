@@ -1,0 +1,13 @@
+/* Default Colors */
+
+/* Background Colors */
+
+/* Fonts */
+
+/* Size */
+@custom-media --xs only screen and (max-width: 480px);
+@custom-media --sm screen and (max-width: 756px);
+@custom-media --md screen and (max-width: 1152px);
+@custom-media --lg screen and (max-width: 1600px);
+
+/* Selectors */

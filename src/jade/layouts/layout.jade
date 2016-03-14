@@ -1,0 +1,31 @@
+doctype html
+html(class='no-js') 
+  head
+    meta(charset='utf-8')
+    meta(http-equiv='X-UA-Compatible', content='IE=edge')
+    meta(name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui")
+    meta(name="format-detection" content="telephone=no")
+
+    block head
+      
+    // build:css css/vendor.css
+    // bower:css
+    // endbower 
+    // endbuild
+
+    link(rel='stylesheet', href='css/style.css')
+
+    script(src='js/modernizr.js')
+
+  body
+
+    block content
+
+    // build:js js/components.js
+    // bower:js
+    // endbower 
+    // inject:js
+    // endinject
+    // endbuild
+
+    script(src='js/script.js')
