@@ -2,11 +2,13 @@
 // Plagin Init
 // ===========
 var gulp = require('gulp');
+var argv = require('yargs').argv;
 var plugins = require('gulp-load-plugins')({
 	pattern: ['gulp-*', 'gulp.*', 'postcss-*', 'autoprefixer', 'css-mqpacker', 'lost'],
 	replaceString: /^(postcss|gulp|css)(-|\.)/,
 	rename: {
-		'gulp-if': 'gulpif'
+		'gulp-if': 'gulpif',
+		'postcss-for': 'postcssfor'
 	}
 });
 
@@ -90,6 +92,7 @@ gulp.task('css', function() {
 		}),
 		plugins.advancedVariables(),
 		plugins.nested,
+		plugins.postcssfor,
 		plugins.lost,
 		plugins.selectorMatches,
 		plugins.mixins,
@@ -171,6 +174,16 @@ gulp.task('watch', function() {
 	gulp.watch(path.watch.fonts, ['fonts']);
 	gulp.watch(path.watch.img, ['img']);
 	gulp.watch('bower.json', ['bower']);
+});
+
+gulp.task('open', ['connect'], function() {
+	var page;
+	argv.page ? page = argv.page + '.html' : page = 'index.html'
+	gulp.src(path.dist.html + page)
+		.pipe(plugins.open({
+			uri: 'http://localhost:8080/' + page,
+			app: 'chrome'
+		}));
 });
 
 gulp.task('default', ['build', 'connect']);
