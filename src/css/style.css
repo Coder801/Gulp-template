@@ -26,13 +26,11 @@ stylesheets/
 
 /* BASE - Base, Mixins, Varibles */
 /* -----------------------------*/
-
-/* HELPERS - Mixins, Varibles */
-@import 'helpers/variables';
-@import 'helpers/mixins';
-@import 'helpers/base';
-@import 'helpers/fonts';
-@import 'helpers/typography';
+@import 'base/variables';
+@import 'base/mixins';
+@import 'base/base';
+@import 'base/fonts';
+@import 'base/typography';
 
 /* LAYOUT - Style for page layouts */
 @import 'layouts/*';
