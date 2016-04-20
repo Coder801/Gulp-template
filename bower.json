@@ -1,0 +1,24 @@
+{
+  "name": "Project Name",
+  "description": "",
+  "main": "index.js",
+  "authors": [
+    "Dmitriy Onischenko"
+  ],
+  "license": "ISC",
+  "moduleType": [],
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "normalize-css": "^3.0.3",
+    "modernizr": "^3.3.1",
+    "enquire": "^2.1.2"
+  }
+}

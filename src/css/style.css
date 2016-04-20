@@ -1,0 +1,49 @@
+/*==========================================================
+Stylesheet
+============================================================
+stylesheets/
+|-- Base
+|   |-- base.css               # Base project styles
+|   |-- fonts.css              # Imports custom fonts
+|   |-- variables.css          # Project varibles
+|   |-- mixins.css             # Imports mixins
+|   |-- typography.css         # Typography style h1, h2, ... h6, p, ul
+|
+|-- Layouts
+|   |-- grid.css               # Grid styles
+|   |-- header.css             # Header styles
+|   |-- wrapper.css            # Page wrapper styles
+|   |-- footer.css             # Footer styles
+|
+|-- Modules
+|   |-- *.css                  # Custom page modules 
+|
+|-- States
+|   |-- *.css                  # Elements statements
+ 
+============================================================*/
+
+
+/* BASE - Base, Mixins, Varibles */
+/* -----------------------------*/
+
+/* HELPERS - Mixins, Varibles */
+@import 'helpers/variables';
+@import 'helpers/mixins';
+@import 'helpers/base';
+@import 'helpers/fonts';
+@import 'helpers/typography';
+
+/* LAYOUT - Style for page layouts */
+@import 'layouts/*';
+
+/* BLOCKS - Page blocks like header, footer, sidebar ect.*/
+@import 'blocks/*';
+
+/* LIBS - Plugins libs */
+@import 'modules/libs/*';
+
+/* MODULES - Individual site components */
+@import 'modules/*';
+
+

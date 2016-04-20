@@ -1,0 +1,42 @@
+/* ===========================
+Typography
+=========================== */
+html {
+  font-size: 15px;
+  @media (--xl) {
+    font-size: 15px;
+  }
+  @media (--lg) {
+    font-size: 15px;
+  }
+  @media (--md) {
+    font-size: 14px;
+  }
+  @media (--sm) {
+    font-size: 12px;
+  }
+}
+input,
+select,
+textarea {
+}
+
+/* All heading */
+:--heading {
+}
+h1 {
+}
+h2 {
+}
+h3 {
+}
+h4 {
+}
+blockquote {
+}
+p {
+}
+a:not([class]) {
+  &:hover {
+  }
+}

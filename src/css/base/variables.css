@@ -1,0 +1,34 @@
+/* ===========================
+Variables
+=========================== */
+
+/* Default Colors */
+/* -----------------------------*/
+
+
+/* Background Colors */
+/* -----------------------------*/
+
+/* Fonts */
+/* -----------------------------*/
+$fontArial: arial, sans-serif;
+
+/* Media */
+/* -----------------------------*/
+@custom-media --xs only screen and (max-width: 480px);
+@custom-media --sm screen and (max-width: 640px);
+@custom-media --md screen and (max-width: 1024px);
+@custom-media --lg screen and (max-width: 1440px);
+@custom-media --xl screen and (max-width: 1600px);
+
+/* Typography */
+
+/* -----------------------------*/
+@custom-selector :--heading h1, h2, h3, h4, h5, h6;
+
+/* Grid */
+/* -----------------------------*/
+$gutter: 35px;
+$gutter-lg: 30px;
+$gutter-md: 20px;
+$gutter-sm: 10px;

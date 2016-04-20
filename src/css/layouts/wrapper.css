@@ -1,0 +1,15 @@
+/* ===========================
+Wrapper
+=========================== */
+.wrapper {
+  padding: $gutter;
+  @media (--lg) {
+    padding: $gutter-lg;
+  }
+  @media (--md) {
+    padding: $gutter-md;
+  }
+  @media (--sm) {
+    padding: $gutter-sm;
+  }
+}
