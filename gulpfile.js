@@ -116,6 +116,7 @@ gulp.task('css', function() {
 		// .pipe(plugins.sourcemaps.init())
 		.pipe(plugins.postcss(processors))
 		// .pipe(plugins.sourcemaps.write('.'))
+		.pipe(plugins.minifyCss())
 		.pipe(gulp.dest(path.dist.css))
 		.pipe(plugins.connect.reload());
 });
@@ -126,6 +127,7 @@ gulp.task('js', function() {
 		.pipe(plugins.babel({
 			presets: ['es2015']
 		}))
+		.pipe(plugins.uglify())
 		.pipe(gulp.dest(path.dist.js))
 		.pipe(plugins.connect.reload());
 });
