@@ -2,13 +2,13 @@
 // Plagin Init
 // ===========
 var gulp = require('gulp');
+var stylelintConfig = require('./stylelint.config.js');
 var plugins = require('gulp-load-plugins')({
-	pattern: ['gulp-*', 'gulp.*', 'postcss-*', 'autoprefixer', 'css-mqpacker', 'lost'],
+	pattern: ['gulp-*', 'gulp.*', 'postcss-*', 'autoprefixer', 'css-mqpacker', 'lost', 'stylelint'],
 	replaceString: /^(postcss|gulp|css)(-|\.)/,
 	rename: {
 		'gulp-if': 'gulpif',
 		'postcss-for': 'postcssfor',
-		'jshint-stylish': 'stylish'
 	}
 });
 
@@ -112,7 +112,8 @@ gulp.task('css', function() {
 		plugins.responsiveImages,
 		plugins.selectorNot,
 		plugins.short,
-		plugins.mqpacker
+		plugins.mqpacker,
+		plugins.stylelint(stylelintConfig)
 	];
 	return gulp.src(path.src.css)
 		.pipe(plugins.plumber())
