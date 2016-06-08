@@ -113,7 +113,10 @@ gulp.task('css', function() {
 		plugins.selectorNot,
 		plugins.short,
 		plugins.mqpacker,
-		plugins.stylelint(stylelintConfig)
+		plugins.stylelint(stylelintConfig),
+		plugins.browserReporter({
+			selector: 'body:before'
+		})
 	];
 	return gulp.src(path.src.css)
 		.pipe(plugins.plumber())
