@@ -2,13 +2,13 @@
 // Plagin Init
 // ===========
 var gulp = require('gulp');
-var argv = require('yargs').argv;
 var plugins = require('gulp-load-plugins')({
 	pattern: ['gulp-*', 'gulp.*', 'postcss-*', 'autoprefixer', 'css-mqpacker', 'lost'],
 	replaceString: /^(postcss|gulp|css)(-|\.)/,
 	rename: {
 		'gulp-if': 'gulpif',
-		'postcss-for': 'postcssfor'
+		'postcss-for': 'postcssfor',
+		'jshint-stylish': 'stylish'
 	}
 });
 
@@ -77,6 +77,8 @@ gulp.task('html', function() {
 			relative: true
 		}))
 		.pipe(plugins.useref())
+		/*.pipe(plugins.gulpif('*.js', plugins.jshint()))
+		.pipe(plugins.gulpif('*.js', plugins.jshint.reporter('jshint-stylish')))*/
 		.pipe(plugins.gulpif('*.js', plugins.uglify()))
 		.pipe(plugins.gulpif('*.css', plugins.minifyCss()))
 		.pipe(gulp.dest(path.dist.html))
@@ -99,6 +101,7 @@ gulp.task('css', function() {
 		plugins.customMedia(),
 		plugins.colorFunction,
 		plugins.colorShort,
+		plugins.center,
 		plugins.customSelectors,
 		plugins.focus,
 		plugins.extend,
@@ -113,17 +116,23 @@ gulp.task('css', function() {
 	];
 	return gulp.src(path.src.css)
 		.pipe(plugins.plumber())
-		// .pipe(plugins.sourcemaps.init())
+		.pipe(plugins.sourcemaps.init())
 		.pipe(plugins.postcss(processors))
-		// .pipe(plugins.sourcemaps.write('.'))
 		.pipe(plugins.minifyCss())
+		.pipe(plugins.sourcemaps.write('/sourcemap'))
 		.pipe(gulp.dest(path.dist.css))
 		.pipe(plugins.connect.reload());
 });
 
 gulp.task('js', function() {
 	return gulp.src(path.src.js[1])
-		.pipe(plugins.plumber())
+		.pipe(plugins.plumber({
+			errorHandler: function(err) {
+				console.log('Error');
+			}
+		}))
+		.pipe(plugins.jshint())
+		.pipe(plugins.jshint.reporter('jshint-stylish'))
 		.pipe(plugins.babel({
 			presets: ['es2015']
 		}))
@@ -144,7 +153,7 @@ gulp.task('modernizr', function() {
 
 gulp.task('img', function() {
 	return gulp.src(path.src.img)
-		.pipe(plugins.image())
+		.pipe(plugins.imagemin())
 		.pipe(gulp.dest(path.dist.img))
 		.pipe(plugins.connect.reload());
 });
@@ -162,7 +171,7 @@ gulp.task('bower', function() {
 
 gulp.task('build', ['html', 'js', 'css', 'img', 'bower', 'modernizr', 'fonts']);
 
-gulp.task('connect', ['watch'], function() {
+gulp.task('connect', function() {
 	plugins.connect.server({
 		root: 'dist',
 		livereload: true
@@ -178,14 +187,4 @@ gulp.task('watch', function() {
 	gulp.watch('bower.json', ['bower']);
 });
 
-gulp.task('open', ['connect'], function() {
-	var page;
-	argv.page ? page = argv.page + '.html' : page = 'index.html'
-	gulp.src(path.dist.html + page)
-		.pipe(plugins.open({
-			uri: 'http://localhost:8080/' + page,
-			app: 'chrome'
-		}));
-});
-
-gulp.task('default', ['build', 'connect']);
+gulp.task('default', ['build', 'connect', 'watch']);

@@ -1,0 +1,4 @@
+//SVG USE mixin
+mixin use(value)
+  svg(class="icon icon-#{value}" role="img")
+    use(xlink:href="\#icon-#{value}")
