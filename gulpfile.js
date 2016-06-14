@@ -100,6 +100,10 @@ gulp.task('css', function() {
 		plugins.mixins,
 		plugins.customMedia(),
 		plugins.colorFunction,
+		plugins.pxtorem({
+			rootValue: 16,
+			propWhiteList: ['font', 'font-size', 'line-height', 'letter-spacing'],
+		}),
 		plugins.colorShort,
 		plugins.center,
 		plugins.customSelectors,

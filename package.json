@@ -49,6 +49,7 @@
     "postcss-for": ">=2.0.1",
     "postcss-mixins": ">=4.0.0",
     "postcss-nested": ">=1.0.0",
+    "postcss-pxtorem": "^3.3.1",
     "postcss-responsive-images": ">=1.0.1",
     "postcss-selector-matches": ">=2.0.1",
     "postcss-selector-not": ">=2.0.0",
