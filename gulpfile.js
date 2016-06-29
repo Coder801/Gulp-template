@@ -7,8 +7,7 @@ var plugins = require('gulp-load-plugins')({
 	pattern: ['gulp-*', 'gulp.*', 'postcss-*', 'autoprefixer', 'css-mqpacker', 'lost', 'stylelint'],
 	replaceString: /^(postcss|gulp|css)(-|\.)/,
 	rename: {
-		'gulp-if': 'gulpif',
-		'postcss-for': 'postcssfor',
+		'gulp-if': 'gulpif'
 	}
 });
 
@@ -91,32 +90,34 @@ gulp.task('css', function() {
 			partial: false,
 			extensions: ['.css'],
 			glob: true
-		}),
-		plugins.advancedVariables(),
-		plugins.nested,
-		plugins.postcssfor,
-		plugins.lost,
-		plugins.selectorMatches,
-		plugins.mixins,
-		plugins.customMedia(),
-		plugins.colorFunction,
+		}), // Add file imports
+		plugins.advancedVariables(), // Postcss varibles
+		plugins.nested, // To unwrap nested rules like SASS
+		plugins.lost, // Flexbox Grid
+		plugins.mixins, // Add mixins (@define-mixin mixinName $param)
+		plugins.atRulesVariables(), // Used in conjunction with the plugin postcss-each, postcss-conditionals, postcss-for and more at-rules plugins. ['for', 'if', 'else', 'each']
+		plugins.customMedia(), // Custom Media Queries syntax to more compatible CSS. (@custom-media --small-viewport (max-width: 30em); @media (--small-viewport) {} => @media (max-width: 30em){})
 		plugins.pxtorem({
 			rootValue: 16,
 			propWhiteList: ['font', 'font-size', 'line-height', 'letter-spacing'],
 		}),
-		plugins.colorShort,
-		plugins.center,
-		plugins.customSelectors,
-		plugins.focus,
-		plugins.extend,
-		plugins.clearfix,
+		plugins.calc(), // More pover calc()
+		plugins.colorShort, // For hexadecimal, rgb and rgba (background: rgb(200); => background: rgb(200, 200, 200);)
+		plugins.colorFunction, // Plugin to transform W3C CSS color function to more compatible CSS. 
+		plugins.center, // Fast center align element ( * {top: center; left: center;})
+		plugins.customSelectors, // Add array with selectors
+		plugins.focusHover, // Add :focus selector to every :hover for keyboard accessibility (For hover only use *:only-hover)
+		plugins.extend, // Add tries to minimize the number of repeat selectors and rules you write in CSS
+		plugins.clearfix, // Adds fix and fix-legacy attributes to the clear property, for self-clearing of children
 		plugins.autoprefixer({
 			browsers: ['> 1%', 'last 2 versions', 'Firefox ESR', 'Opera 12.1', 'Safari 7']
 		}),
-		plugins.responsiveImages,
-		plugins.selectorNot,
-		plugins.short,
-		plugins.mqpacker,
+		plugins.writeSvg, // Write SVGs directly in CSS.
+		plugins.responsiveImages, // Add making responsive images. (image-size: responsive;)
+		plugins.selectorMatches, // Plugin to transform :matches() W3C CSS pseudo class to more compatible CSS selectors
+		plugins.selectorNot, // Add multiple css3 :not() selectors, like *:not(:first-child, .special)
+		plugins.short, // Use advanced shorthand properties in CSS (Border, Color, Font-Size, Position, Size, Spacing, Text, Data, Font Weights)
+		plugins.mqpacker, // Pack same CSS media query rules into one media query rule.
 		plugins.stylelint(stylelintConfig),
 		plugins.browserReporter({
 			selector: 'body:before'
